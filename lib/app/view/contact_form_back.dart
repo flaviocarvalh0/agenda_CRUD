@@ -2,26 +2,20 @@ import 'package:agenda_crud/domain/entities/contact.dart';
 import 'package:agenda_crud/domain/services/contact_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mobx/mobx.dart';
 
-part 'contact_form_back.g.dart';
-
-class ContactFormBack = _ContactFormBack with _$ContactFormBack;
-
-abstract class _ContactFormBack with Store {
+class ContactFormBack {
   Contact? contact;
   var _service = GetIt.I.get<ContactService>();
   bool? _nameIsValid;
   bool? _emailIsValid;
   bool? _phoneIsValid;
 
-  @action
   bool get isValid => _nameIsValid! && _emailIsValid! && _phoneIsValid!;
 
-  //diferenciar novo com alteração
-  _ContactFormBack(BuildContext context) {
+  // diferenciar novo com alteração
+  ContactFormBack(BuildContext context) {
     var parameter = ModalRoute.of(context)!.settings.arguments;
-    contact = ((parameter == null) ? Contact() : parameter) as Contact?;
+    contact = (((parameter == null) ? Contact() : parameter) as Contact?)!;
   }
 
   //salvar
@@ -30,7 +24,6 @@ abstract class _ContactFormBack with Store {
   }
 
   //validações
-
   String? validateName(String? name) {
     try {
       _service.validateName(name);
@@ -42,9 +35,9 @@ abstract class _ContactFormBack with Store {
     }
   }
 
-    String? validateEmail(String? email) {
+  String? validateEmail(String? email) {
     try {
-      _service.validateName(email);
+      _service.validateEmail(email);
       _emailIsValid = true;
       return null;
     } catch (e) {
@@ -53,10 +46,9 @@ abstract class _ContactFormBack with Store {
     }
   }
 
-
-    String? validatePhone(String? phone) {
+  String? validatePhone(String? phone) {
     try {
-      _service.validateName(phone);
+      _service.validatePhone(phone);
       _phoneIsValid = true;
       return null;
     } catch (e) {
@@ -64,6 +56,4 @@ abstract class _ContactFormBack with Store {
       return e.toString();
     }
   }
-
-
 }

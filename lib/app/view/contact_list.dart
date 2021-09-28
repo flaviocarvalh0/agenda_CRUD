@@ -1,4 +1,4 @@
-import 'package:agenda_crud/app/my_app.dart';
+
 import 'package:agenda_crud/app/view/contact_list_back.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,12 +12,12 @@ class ContactList extends StatelessWidget {
   /*CircleAvatar circleAvatar(String url){
       return Uri.tryParse(url).isAbsolute) ?
       CircleAvatar(backgroundImage: NetworkImage(url))
-     : return CircleAvatar(child:icon (Icons.person));
+    : return CircleAvatar(child:icon (Icons.person));
     
 
   }*/
 
-  Widget iconEditButton(dynamic onPressed) {
+  Widget iconEditButton(Function() onPressed) {
     return IconButton(
       onPressed: onPressed,
       icon: Icon(Icons.edit),
@@ -25,7 +25,7 @@ class ContactList extends StatelessWidget {
     );
   }
 
-  Widget iconRemovebutton(BuildContext context, dynamic onRemove) {
+  Widget iconRemovebutton(BuildContext context, Function() onRemove) {
     return IconButton(
       icon: Icon(Icons.delete),
       color: Colors.red,
@@ -80,6 +80,9 @@ class ContactList extends StatelessWidget {
                     itemBuilder: (context, i) {
                       dynamic contato = lista[i];
                       return ListTile(
+                        onTap: () {
+
+                        },
                         title: Text(contato.nome),
                         subtitle: Text(contato.telefone),
                         trailing: Container(

@@ -8,4 +8,5 @@ setupInjection() {
 
   getIt.registerSingleton<ContactDAO>(ContactDAOImpl());
   getIt.registerSingleton<ContactService>(ContactService());
+  ;
 }
