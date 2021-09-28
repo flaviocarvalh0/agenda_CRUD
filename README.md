@@ -1,6 +1,6 @@
 # agenda_crud
 
-A new Flutter project.
+app para cadastros de contatos.
 
 ## Getting Started
 
